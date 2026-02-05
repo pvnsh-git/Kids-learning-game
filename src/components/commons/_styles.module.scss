@@ -1,0 +1,209 @@
+.card {
+    margin: 10px;
+    padding: 15px;
+    width: 200px;
+    height: fit-content;
+    background: antiquewhite;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px #eaa;
+
+    .header {
+        font-size: x-large;
+        font-weight: 700;
+        padding: 10px 0;
+    }
+
+    .body {
+        position: relative;
+        font-style: italic;
+        font-size: 14px;
+        margin: 10px 0;
+        height: 100px;
+        overflow: scroll;
+
+        .scrollarowsContainer {
+            position: fixed;
+            bottom: 40px;
+            left: 45%;
+            width: 24px;
+            height: 24px;
+            display: none;
+
+            .chevron {
+                position: absolute;
+                width: 15px;
+                height: 6px;
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+                animation: move 3s ease-out infinite;
+              }
+              
+              .chevron:first-child {
+                animation: move 3s ease-out 1s infinite;
+              }
+              
+              .chevron:nth-child(2) {
+                animation: move 3s ease-out 2s infinite;
+              }
+              
+              .chevron:before,
+              .chevron:after {
+                content: ' ';
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 51%;
+                background: #f5af23;
+              }
+              
+              .chevron:before {
+                left: 0;
+                transform: skew(0deg, 30deg);
+              }
+              
+              .chevron:after {
+                right: 0;
+                width: 50%;
+                transform: skew(0deg, -30deg);
+              }
+              
+              @keyframes move {
+                25% {
+                  opacity: 1;
+              
+                }
+                33% {
+                  opacity: 1;
+                  transform: translateY(20px);
+                }
+                67% {
+                  opacity: 1;
+                  transform: translateY(30px);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translateY(45px) scale3d(0.3, 0.3, 0.3);
+                }
+                
+              }
+        }
+    }
+}
+
+.card:hover {
+    background-color: #eaa;
+    box-shadow: 1px 2px 7px #e66, -1px 0 7px #e77;
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+
+    .body {
+        .scrollarowsContainer {
+            display: block;
+            .chevron::before, .chevron::after {
+                background-color: crimson;
+            }
+        }
+    }
+}
+
+.darkBG {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  width: 80vw;
+  height: 80vh;
+  background: white;
+  color: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+    //  position: fixed;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // width: 80%;
+    // height: 80vh;
+    // margin: 0 auto;
+    // border-radius: 50px;
+    // box-shadow: 15px 15px 20px #333;
+    // z-index: 10;
+}
+
+.modalHeader {
+  height: 50px;
+  background: white;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background-color: burlywood;
+}
+
+.heading {
+  margin: 0;
+  padding: 7px;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+}
+
+.modalContent {
+  padding: 10px;
+  font-size: 14px;
+  height: 100%;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.modalActions {
+  position: absolute;
+  bottom: 2px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.closeBtn {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 18px;
+  color: #2c3e50;
+  background: white;
+  transition: all 0.25s ease;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-self: flex-end;
+  margin-top: -7px;
+  margin-right: -7px;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  transform: translate(-4px, 4px);
+}

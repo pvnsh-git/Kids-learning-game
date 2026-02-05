@@ -1,0 +1,36 @@
+.userTable {
+    margin: 10px 25px;
+    border-collapse: collapse;
+
+    thead {
+        background: burlywood;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        border: 1px solid #888;
+
+        tr {
+            th {
+                padding-right: 10px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border: 1px solid #888;
+            td:first-child,
+            td:nth-child(2) {
+                color: red;
+            }
+
+            td:not(:first-child){
+                border-right: 1px solid #888;
+            }
+
+            td {
+                padding-right: 10px;
+            }
+        }
+    }
+}

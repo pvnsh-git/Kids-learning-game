@@ -1,0 +1,59 @@
+.calenderWrap {
+    margin: 10px;
+
+    .calenderClass {
+        color: #E20074;
+        border: none !important;
+    }
+}
+
+.selected {
+    background-color: #e20074 !important;
+    border-radius: 4px;
+    color: white;
+}
+
+.today {
+    background-color: #fff !important;
+    border-radius: 4px;
+    color: #e20074;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        background-color: #e20074;
+        border-radius: 50%;
+        z-index: 1;
+    }
+}
+
+.strikeThrough {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.availableDate {
+    background-color: #fff !important;
+    border-radius: 4px;
+    color: #000;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        background-color: #e20074;
+        border-radius: 50%;
+        z-index: 1;
+    }
+}

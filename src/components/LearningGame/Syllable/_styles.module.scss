@@ -1,0 +1,751 @@
+@import '../../commons/common.module.scss';
+
+.listContainer {
+    background: linear-gradient(135deg, #ed0d0de0, #3131f1) no-repeat center center fixed;
+    background-size: contain;
+
+    .moreOption {
+        width: fit-content;
+        margin: 0 auto;
+
+        .syllable {
+            color: darkorange;
+            width: fit-content;
+            margin: 20px;
+            padding: 20px;
+            font-size: 35px;
+            text-align: center;
+            font-weight: 900;
+            box-shadow: 7px 8px 12px black, -2px 0px 6px #666;
+            border-radius: 10px;
+            background-color: indigo;
+            cursor: pointer;
+            transform: none;
+        }
+    }
+}
+
+.alphaWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+        box-shadow: 1px 3px 7px black;
+
+        .syllableImages {
+            width: fit-content;
+            height: 200px;
+        }
+
+        .syllable {
+            color: darkorange;
+            margin: 20px;
+            padding: 20px;
+            font-size: 60px;
+            text-align: center;
+            font-weight: 900;
+            box-shadow: 7px 8px 12px black, -2px 0px 6px #666;
+            border-radius: 10px;
+            background-color: cornsilk;
+            cursor: pointer;
+            transform: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+
+            // Sparkle effect layer
+            &::before {
+                content: '✨';
+                position: absolute;
+                top: -20px;
+                left: -20px;
+                font-size: 20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            &::after {
+                content: '⭐';
+                position: absolute;
+                bottom: -20px;
+                right: -20px;
+                font-size: 20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+        }
+
+        .syllable:hover {
+            z-index: 100;
+            transform: scale(2) rotate(-5deg);
+            animation: magicFloat 0.6s ease-in-out infinite alternate;
+            
+            &::before {
+                opacity: 1;
+                top: 5px;
+                left: 5px;
+                font-size: 30px;
+                animation: sparkleRotate 1s linear infinite;
+            }
+
+            &::after {
+                opacity: 1;
+                bottom: 5px;
+                right: 5px;
+                font-size: 30px;
+                animation: sparkleRotate 1s linear infinite reverse;
+            }
+        }
+
+        .syllable:focus {
+            outline: 4px solid gold;
+            outline-offset: 4px;
+        }
+
+        .onClick {
+            animation: syllable 1.5s linear 0.2s alternate;
+        }
+
+        .btn {
+            margin: 0 20px;
+            border: none;
+            background: none;
+            box-shadow: 1px 1px 3px black;
+            border-radius: 4px;
+            background-color: gainsboro;
+        }
+    }
+}
+
+@keyframes syllable {
+    0% {
+        box-shadow: 7px 8px 12px black, -2px 0px 6px #666;
+        transform: scale(0.2);
+    }
+
+    25% {
+        box-shadow: 3px 4px 6px black, -1px 0px 2px #ddd;
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: none;
+        transform: scale(1.2);
+    }
+
+    75% {
+        box-shadow: 3px 4px 6px black, -1px 0px 2px #ddd;
+        transform: scale(1);
+    }
+
+    100% {
+        box-shadow: 7px 8px 12px black, -2px 0px 6px #666;
+        transform: none;
+    }
+}
+
+// Modal overlay styles
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.5s ease-out;
+}
+
+.zoomedLetter {
+    font-size: 200px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 20px #ff6b35,
+        0 0 40px #ff6b35,
+        0 0 60px #ff6b35,
+        4px 4px 0 #e63946,
+        8px 8px 0 #1d3557;
+    margin-bottom: 20px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.alphabetImage {
+    font-size: 150px;
+    margin-bottom: 20px;
+    animation: bounceIn 0.6s ease-out 0.3s both;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+}
+
+.meaningText {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// Magical hover animations
+@keyframes magicFloat {
+    0% {
+        transform: scale(2) rotate(-5deg) translateY(0);
+    }
+    100% {
+        transform: scale(2.1) rotate(5deg) translateY(-10px);
+    }
+}
+
+@keyframes sparkleRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.5);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes rainbowGlow {
+    0% {
+        filter: hue-rotate(0deg) brightness(1.1);
+    }
+    50% {
+        filter: hue-rotate(180deg) brightness(1.3);
+    }
+    100% {
+        filter: hue-rotate(360deg) brightness(1.1);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: scale(2) rotate(-5deg);
+    }
+    25% {
+        transform: scale(2.1) rotate(5deg);
+    }
+    50% {
+        transform: scale(2) rotate(-5deg);
+    }
+    75% {
+        transform: scale(2.1) rotate(5deg);
+    }
+}
+
+// ============================================
+// UNIQUE MAGICAL HOVER EFFECTS FOR EACH LETTER
+// ============================================
+
+// A - Apple Red with bouncing apple
+.letter_a:hover {
+    background: linear-gradient(135deg, #ff4757, #c0392b) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #ff4757, 0 0 80px #c0392b, inset 0 0 30px rgba(255,255,255,0.2) !important;
+    animation: bounce 0.5s ease infinite !important;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40% !important;
+    &::before { content: '🍎' !important; }
+    &::after { content: '🍎' !important; }
+}
+
+// B - Ball Blue with spinning effect
+.letter_b:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #3498db, 0 0 80px #2980b9 !important;
+    animation: spin3d 1s ease-in-out infinite !important;
+    border-radius: 50% !important;
+    &::before { content: '⚽' !important; }
+    &::after { content: '🏀' !important; }
+}
+
+// C - Cat Purple with wiggle
+.letter_c:hover {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #9b59b6, 0 0 80px #8e44ad !important;
+    animation: catWiggle 0.3s ease-in-out infinite !important;
+    &::before { content: '🐱' !important; }
+    &::after { content: '🐾' !important; }
+}
+
+// D - Dog Brown with tail wag
+.letter_d:hover {
+    background: linear-gradient(135deg, #d35400, #e67e22) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #d35400, 0 0 80px #e67e22 !important;
+    animation: tailWag 0.2s ease-in-out infinite !important;
+    &::before { content: '🐕' !important; }
+    &::after { content: '🦴' !important; }
+}
+
+// E - Elephant Gray with stomp
+.letter_e:hover {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #7f8c8d, 0 0 80px #95a5a6 !important;
+    animation: elephantStomp 0.6s ease-in-out infinite !important;
+    &::before { content: '🐘' !important; }
+    &::after { content: '🥜' !important; }
+}
+
+// F - Fish Ocean Blue with swim
+.letter_f:hover {
+    background: linear-gradient(135deg, #00cec9, #81ecec) !important;
+    color: #006266 !important;
+    box-shadow: 0 0 40px #00cec9, 0 0 80px #81ecec !important;
+    animation: fishSwim 1s ease-in-out infinite !important;
+    &::before { content: '🐟' !important; }
+    &::after { content: '🫧' !important; }
+}
+
+// G - Grapes Purple with grow
+.letter_g:hover {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #6c5ce7, 0 0 80px #a29bfe !important;
+    animation: grapeGrow 0.8s ease-in-out infinite !important;
+    border-radius: 30px 30px 50% 50% !important;
+    &::before { content: '🍇' !important; }
+    &::after { content: '🍇' !important; }
+}
+
+// H - Hat Magic with sparkle
+.letter_h:hover {
+    background: linear-gradient(135deg, #2d3436, #636e72) !important;
+    color: gold !important;
+    box-shadow: 0 0 40px gold, 0 0 80px #f39c12 !important;
+    animation: magicHat 1s ease-in-out infinite !important;
+    &::before { content: '🎩' !important; }
+    &::after { content: '✨' !important; }
+}
+
+// I - Ice Cream pastel with melt
+.letter_i:hover {
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #fab1a0) !important;
+    color: #d63031 !important;
+    box-shadow: 0 0 40px #ffeaa7, 0 0 80px #fab1a0 !important;
+    animation: iceCreamMelt 1.5s ease-in-out infinite !important;
+    border-radius: 20px 20px 50% 50% !important;
+    &::before { content: '🍦' !important; }
+    &::after { content: '🍨' !important; }
+}
+
+// J - Jug Clay with pour
+.letter_j:hover {
+    background: linear-gradient(135deg, #a0522d, #cd853f) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #a0522d, 0 0 80px #cd853f !important;
+    animation: jugPour 1s ease-in-out infinite !important;
+    &::before { content: '🫗' !important; }
+    &::after { content: '💧' !important; }
+}
+
+// K - Kite Sky with fly
+.letter_k:hover {
+    background: linear-gradient(135deg, #74b9ff, #0984e3) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #74b9ff, 0 0 80px #0984e3 !important;
+    animation: kiteFly 1.5s ease-in-out infinite !important;
+    transform-origin: bottom center;
+    &::before { content: '🪁' !important; }
+    &::after { content: '🌤️' !important; }
+}
+
+// L - Lion Golden with roar
+.letter_l:hover {
+    background: linear-gradient(135deg, #f9ca24, #f0932b) !important;
+    color: #6d4c00 !important;
+    box-shadow: 0 0 40px #f9ca24, 0 0 80px #f0932b !important;
+    animation: lionRoar 0.5s ease-in-out infinite !important;
+    &::before { content: '🦁' !important; }
+    &::after { content: '👑' !important; }
+}
+
+// M - Monkey Brown with swing
+.letter_m:hover {
+    background: linear-gradient(135deg, #795548, #a1887f) !important;
+    color: #ffeb3b !important;
+    box-shadow: 0 0 40px #795548, 0 0 80px #a1887f !important;
+    animation: monkeySwing 0.8s ease-in-out infinite !important;
+    &::before { content: '🐵' !important; }
+    &::after { content: '🍌' !important; }
+}
+
+// N - Nest Nature with shake
+.letter_n:hover {
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #27ae60, 0 0 80px #2ecc71 !important;
+    animation: nestShake 0.4s ease-in-out infinite !important;
+    border-radius: 50% 50% 40% 40% !important;
+    &::before { content: '🪺' !important; }
+    &::after { content: '🐦' !important; }
+}
+
+// O - Orange Citrus with squeeze
+.letter_o:hover {
+    background: linear-gradient(135deg, #ff9f43, #ee5a24) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #ff9f43, 0 0 80px #ee5a24 !important;
+    animation: orangeSqueeze 0.6s ease-in-out infinite !important;
+    border-radius: 50% !important;
+    &::before { content: '🍊' !important; }
+    &::after { content: '🧃' !important; }
+}
+
+// P - Parrot Rainbow with fly
+.letter_p:hover {
+    background: linear-gradient(135deg, #e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6) !important;
+    background-size: 300% 300% !important;
+    color: white !important;
+    box-shadow: 0 0 40px #e74c3c, 0 0 80px #3498db !important;
+    animation: parrotRainbow 2s ease infinite, parrotFly 0.5s ease-in-out infinite !important;
+    &::before { content: '🦜' !important; }
+    &::after { content: '🌈' !important; }
+}
+
+// Q - Queen Royal Purple with crown
+.letter_q:hover {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6, gold) !important;
+    color: gold !important;
+    box-shadow: 0 0 40px gold, 0 0 80px #8e44ad !important;
+    animation: queenWave 1s ease-in-out infinite !important;
+    &::before { content: '👸' !important; }
+    &::after { content: '👑' !important; }
+}
+
+// R - Rabbit Pink with hop
+.letter_r:hover {
+    background: linear-gradient(135deg, #fd79a8, #e84393) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #fd79a8, 0 0 80px #e84393 !important;
+    animation: rabbitHop 0.4s ease-in-out infinite !important;
+    &::before { content: '🐰' !important; }
+    &::after { content: '🥕' !important; }
+}
+
+// S - Sun Yellow with shine
+.letter_s:hover {
+    background: linear-gradient(135deg, #f1c40f, #f39c12) !important;
+    color: #c0392b !important;
+    box-shadow: 0 0 50px #f1c40f, 0 0 100px #f39c12, 0 0 150px #f1c40f !important;
+    animation: sunShine 1s ease-in-out infinite !important;
+    border-radius: 50% !important;
+    &::before { content: '☀️' !important; }
+    &::after { content: '🌻' !important; }
+}
+
+// T - Tiger Orange with stripes
+.letter_t:hover {
+    background: repeating-linear-gradient(
+        45deg,
+        #f39c12,
+        #f39c12 10px,
+        #2d3436 10px,
+        #2d3436 20px
+    ) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #f39c12, 0 0 80px #e67e22 !important;
+    animation: tigerProwl 0.6s ease-in-out infinite !important;
+    &::before { content: '🐯' !important; }
+    &::after { content: '🐅' !important; }
+}
+
+// U - Umbrella Rain with drip
+.letter_u:hover {
+    background: linear-gradient(180deg, #e74c3c 0%, #e74c3c 30%, transparent 30%) !important;
+    background-color: #3498db !important;
+    color: white !important;
+    box-shadow: 0 0 40px #3498db, 0 0 80px #2980b9 !important;
+    animation: umbrellaRain 0.8s ease-in-out infinite !important;
+    border-radius: 50% 50% 10% 10% !important;
+    &::before { content: '☂️' !important; }
+    &::after { content: '🌧️' !important; }
+}
+
+// V - Van Road with drive
+.letter_v:hover {
+    background: linear-gradient(135deg, #00b894, #55efc4) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #00b894, 0 0 80px #55efc4 !important;
+    animation: vanDrive 0.3s ease-in-out infinite !important;
+    border-radius: 10px 10px 20px 20px !important;
+    &::before { content: '🚐' !important; }
+    &::after { content: '🛣️' !important; }
+}
+
+// W - Watch Time with tick
+.letter_w:hover {
+    background: linear-gradient(135deg, #2d3436, #636e72) !important;
+    color: gold !important;
+    box-shadow: 0 0 40px silver, 0 0 80px gold !important;
+    animation: watchTick 1s steps(12) infinite !important;
+    border-radius: 50% !important;
+    border: 4px solid gold !important;
+    &::before { content: '⌚' !important; }
+    &::after { content: '⏰' !important; }
+}
+
+// X - Xylophone Music with play
+.letter_x:hover {
+    background: repeating-linear-gradient(
+        90deg,
+        #e74c3c 0px,
+        #e74c3c 15px,
+        #f39c12 15px,
+        #f39c12 30px,
+        #f1c40f 30px,
+        #f1c40f 45px,
+        #2ecc71 45px,
+        #2ecc71 60px,
+        #3498db 60px,
+        #3498db 75px,
+        #9b59b6 75px,
+        #9b59b6 90px
+    ) !important;
+    color: white !important;
+    box-shadow: 0 0 40px #e74c3c, 0 0 80px #9b59b6 !important;
+    animation: xylophonePlay 0.2s ease-in-out infinite !important;
+    &::before { content: '🎵' !important; }
+    &::after { content: '🎶' !important; }
+}
+
+// Y - Yak Mountain with graze
+.letter_y:hover {
+    background: linear-gradient(180deg, #74b9ff 0%, #74b9ff 40%, #55efc4 40%, #00b894 100%) !important;
+    color: #2d3436 !important;
+    box-shadow: 0 0 40px #74b9ff, 0 0 80px #00b894 !important;
+    animation: yakGraze 1s ease-in-out infinite !important;
+    &::before { content: '🐃' !important; }
+    &::after { content: '🏔️' !important; }
+}
+
+// Z - Zebra Stripes with gallop
+.letter_z:hover {
+    background: repeating-linear-gradient(
+        90deg,
+        white 0px,
+        white 12px,
+        #2d3436 12px,
+        #2d3436 24px
+    ) !important;
+    color: #e74c3c !important;
+    box-shadow: 0 0 40px white, 0 0 80px #2d3436 !important;
+    animation: zebraGallop 0.3s ease-in-out infinite !important;
+    &::before { content: '🦓' !important; }
+    &::after { content: '🌍' !important; }
+}
+
+// ============================================
+// UNIQUE ANIMATIONS FOR EACH LETTER
+// ============================================
+
+@keyframes bounce {
+    0%, 100% { transform: scale(2) translateY(0); }
+    50% { transform: scale(2.1) translateY(-20px); }
+}
+
+@keyframes spin3d {
+    0% { transform: scale(2) rotateY(0deg); }
+    100% { transform: scale(2) rotateY(360deg); }
+}
+
+@keyframes catWiggle {
+    0%, 100% { transform: scale(2) rotate(-8deg); }
+    50% { transform: scale(2) rotate(8deg); }
+}
+
+@keyframes tailWag {
+    0%, 100% { transform: scale(2) skewX(-8deg); }
+    50% { transform: scale(2) skewX(8deg); }
+}
+
+@keyframes elephantStomp {
+    0%, 100% { transform: scale(2) translateY(0); }
+    25% { transform: scale(2.1) translateY(-8px); }
+    50% { transform: scale(1.9) translateY(8px); }
+    75% { transform: scale(2.1) translateY(-8px); }
+}
+
+@keyframes fishSwim {
+    0%, 100% { transform: scale(2) translateX(0) rotate(0deg); }
+    25% { transform: scale(2) translateX(15px) rotate(15deg); }
+    75% { transform: scale(2) translateX(-15px) rotate(-15deg); }
+}
+
+@keyframes grapeGrow {
+    0%, 100% { transform: scale(2); }
+    50% { transform: scale(2.2); }
+}
+
+@keyframes magicHat {
+    0%, 100% { transform: scale(2) translateY(0); }
+    50% { transform: scale(2.1) translateY(-15px); }
+}
+
+@keyframes iceCreamMelt {
+    0%, 100% { transform: scale(2) scaleY(1); }
+    50% { transform: scale(2) scaleY(1.15); }
+}
+
+@keyframes jugPour {
+    0%, 100% { transform: scale(2) rotate(0deg); }
+    50% { transform: scale(2) rotate(-25deg); }
+}
+
+@keyframes kiteFly {
+    0%, 100% { transform: scale(2) translate(0, 0) rotate(-8deg); }
+    50% { transform: scale(2) translate(15px, -20px) rotate(8deg); }
+}
+
+@keyframes lionRoar {
+    0%, 100% { transform: scale(2); }
+    50% { transform: scale(2.3); }
+}
+
+@keyframes monkeySwing {
+    0%, 100% { transform: scale(2) rotate(-20deg); }
+    50% { transform: scale(2) rotate(20deg); }
+}
+
+@keyframes nestShake {
+    0%, 100% { transform: scale(2) rotate(-4deg); }
+    50% { transform: scale(2) rotate(4deg); }
+}
+
+@keyframes orangeSqueeze {
+    0%, 100% { transform: scale(2) scaleX(1); }
+    50% { transform: scale(2) scaleX(0.85) scaleY(1.15); }
+}
+
+@keyframes parrotRainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes parrotFly {
+    0%, 100% { transform: scale(2) rotate(-5deg); }
+    50% { transform: scale(2.1) rotate(5deg) translateY(-10px); }
+}
+
+@keyframes queenWave {
+    0%, 100% { transform: scale(2) rotate(0deg); }
+    25% { transform: scale(2) rotate(-8deg); }
+    75% { transform: scale(2) rotate(8deg); }
+}
+
+@keyframes rabbitHop {
+    0%, 100% { transform: scale(2) translateY(0); }
+    50% { transform: scale(1.9) translateY(-30px); }
+}
+
+@keyframes sunShine {
+    0%, 100% { transform: scale(2) rotate(0deg); filter: brightness(1); }
+    50% { transform: scale(2.2) rotate(180deg); filter: brightness(1.4); }
+}
+
+@keyframes tigerProwl {
+    0%, 100% { transform: scale(2) translateX(0); }
+    25% { transform: scale(2) translateX(-10px) rotate(-4deg); }
+    75% { transform: scale(2) translateX(10px) rotate(4deg); }
+}
+
+@keyframes umbrellaRain {
+    0%, 100% { transform: scale(2) rotate(-8deg); }
+    50% { transform: scale(2) rotate(8deg); }
+}
+
+@keyframes vanDrive {
+    0%, 100% { transform: scale(2) translateX(0); }
+    50% { transform: scale(2) translateX(10px); }
+}
+
+@keyframes watchTick {
+    0% { transform: scale(2) rotate(0deg); }
+    100% { transform: scale(2) rotate(360deg); }
+}
+
+@keyframes xylophonePlay {
+    0%, 100% { transform: scale(2) translateY(0); }
+    50% { transform: scale(2) translateY(-8px); }
+}
+
+@keyframes yakGraze {
+    0%, 100% { transform: scale(2) rotate(0deg); }
+    50% { transform: scale(2) rotate(-8deg) translateY(8px); }
+}
+
+@keyframes zebraGallop {
+    0%, 100% { transform: scale(2) translateY(0) rotate(0deg); }
+    25% { transform: scale(2) translateY(-15px) rotate(-5deg); }
+    75% { transform: scale(2) translateY(-15px) rotate(5deg); }
+}
